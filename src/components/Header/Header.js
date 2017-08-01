@@ -21,9 +21,6 @@ class Header extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <Link to='/login'>Login In click</Link>
-          <p>{user}</p>
-          <a href='#' onClick={this.onGetUser}> New user add </a> 
         </div>
       </div>
     );
@@ -31,7 +28,6 @@ class Header extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  console.log(state);
    return {
     user: state.User.users
   }
