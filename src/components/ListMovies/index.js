@@ -7,15 +7,22 @@ import { deleteMovie, getMovie } from '../../actions/movie';
 import preloader from './preloader.gif';
 import Movie from './Movie';
 import Sort from './Sort';
+import Search from './Search';
 
 class ListMovies extends React.Component {
   constructor(){
     super();
     this.state = {
       update: [],
-      sort: false, 
+      sort: false,
+      tabsSearchActive: 'title', 
     }
   }
+
+  componentDidMount(){
+    this.setState({ update: this.props.data });
+  }
+
 
 
   componentWillReceiveProps(props){
@@ -25,7 +32,7 @@ class ListMovies extends React.Component {
       } else {
         this.setState({ update: props.data });
       }
-      
+
       localStorage.setItem('movies', JSON.stringify(props.data));
     }
   }
@@ -43,11 +50,15 @@ class ListMovies extends React.Component {
   
   render() {
     let { loading, data, title, deleteMovie } = this.props;
-    let { sort, update } = this.state;
+    let { sort, update, tabsSearchActive } = this.state;
     return (
       <div className={s.root}>
         <h1 className={s.title}>{title}</h1>
         <div className={s.menu}>
+          <Search 
+            activeTab={tabsSearchActive} 
+            tabClick={(tabName) => {this.setState({tabsSearchActive: tabName})}}
+          />
           <Sort sortNameFunc={this.sortNameClick} sortActive={sort} />
         </div>
         <div className={s.container}>
