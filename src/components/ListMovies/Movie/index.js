@@ -1,7 +1,6 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Movie.scss';
-import { connect } from 'react-redux';
 import Link from '../../Link';
 
 

@@ -3,17 +3,13 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ListMovies.scss';
 import { connect } from 'react-redux';
 import Link from '../Link';
-import { getMovie, deleteMovie } from '../../actions/movie';
+import { deleteMovie } from '../../actions/movie';
 import preloader from './preloader.gif';
 import Movie from './Movie';
 
 class ListMovies extends React.Component {
   constructor(){
     super();
-  }
-
-  componentDidMount(){
-    this.props.getMovie();
   }
 
   componentWillReceiveProps(props){
@@ -49,8 +45,7 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = dispatch => ({ 
-    getMovie: () => dispatch(getMovie()),
-    deleteMovie: (id) => dispatch(deleteMovie(id)),
+  deleteMovie: (id) => dispatch(deleteMovie(id)),
 });
 
 export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(ListMovies));

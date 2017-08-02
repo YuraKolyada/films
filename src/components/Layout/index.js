@@ -1,20 +1,28 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Layout.scss';
+import { connect } from 'react-redux';
+import { getMovie } from '../../actions/movie';
 import Header from '../Header';
 import Footer from '../Footer';
 
 class Layout extends React.Component {
+  
+  componentDidMount(){
+  	this.props.getMovie();
+  }
 
   render() {
     return (
       <div className={s.root}>
-        <Header />
-        {this.props.children}
-        <Footer />
+        { this.props.children }
       </div>
     );
   }
 }
 
-export default withStyles(s)(Layout);
+let mapDispatchToProps = dispatch => ({ 
+  getMovie: () => dispatch(getMovie()),
+});
+
+export default withStyles(s)(connect(null, mapDispatchToProps)(Layout));

@@ -5,29 +5,13 @@ import { connect } from 'react-redux';
 import Link from '../Link';
 
 
-class Header extends React.Component {
-  constructor(){
-    super();
-  }
-
-  componentDidMount(){
-   
-  }
-
-  render() {
-    let { data } = this.props;
-    return (
-      <div className={s.root}>
-        <div className={s.container}>
-        </div>
-      </div>
-    );
-  }
-}
-
-let mapStateToProps = (state) => ({
-    data: state.movie.data,
-});
+const Header = ({ link, title }) => (
+  <Link to={link} className={s.link}>
+    <div className={s.back}></div>
+    <h3 className={s.title}>{title}</h3>
+  </Link>
+);
 
 
-export default withStyles(s)(connect(mapStateToProps)(Header));
+
+export default withStyles(s)(Header);

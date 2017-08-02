@@ -10,6 +10,10 @@ const routes = {
       path: '/',
       load: () => import(/* webpackChunkName: 'home' */ './movies'),
     },
+    {
+      path: '/movie/:id',
+      load: () => import(/* webpackChunkName: 'home' */ './infoMovie'),
+    },
     
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     {
