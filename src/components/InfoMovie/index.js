@@ -7,12 +7,17 @@ import Header from '../Header';
 class InfoMovie extends React.Component {
   
   render() {
-    let { data, id, title: titleHeader } = this.props;
-    const movie = data.filter((movie) => +movie.id === +id);
-    const { title, format, year, actors } = movie[0];
+    let { data, id, title: titleHeader } = this.props, 
+      movie = [{title: '', format: '', year: '', actors: []}];
+    if(data.length){
+      movie = data.filter((movie) => +movie.id === +id);
+    }
+
+    let { title, format, year, actors } = movie[0];
     return (
+      data.length ?
       <div className={s.root}>
-        <Header link={'/'} title={titleHeader} />
+        <Header link='/' title={titleHeader} />
         <div className={s.movie}>
           <h3 className={s.title}>{title}</h3>
           <div className={s.year}>
@@ -25,11 +30,11 @@ class InfoMovie extends React.Component {
           </div>
           <div className={s.actors}>
             <span className={s.name}>Акторы: </span>
-            <span>{actors.map((actor) => `${actor.firstName} ${actor.lastName}, `)}</span>
+            <span>{actors ? actors.map((actor) => `${actor.firstName} ${actor.lastName}, `) : 'нету...'}</span>
           </div>
         </div>
-
       </div>
+      : null
     );
   }
 }

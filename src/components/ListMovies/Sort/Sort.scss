@@ -1,0 +1,10 @@
+.sort {
+	font-size: 16px;
+	line-height: 1;
+	font-weight: 500;
+	color: #4F4F4F;
+	&.active {
+		background: #4F4F4F;
+		color: #fff;
+	}
+}

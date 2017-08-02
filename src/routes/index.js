@@ -1,4 +1,3 @@
-
 // The top-level (parent) route
 const routes = {
 
