@@ -9,11 +9,16 @@ class GetDataFile {
 	}
 
 	getData = (str, title, year, format, actors, id) => {
+		let actor = actors.split(', ')
+		actors = actor.map((name) => {
+			let arrName = name.split(' ');
+			return { firstName: arrName[0], lastName: arrName[1] }
+		})
 		this.data.push({ 
 			title, 
 			year: +year, 
 			format, 
-			actors: actors.split(', '), 
+			actors, 
 			id, 
 		})
 	}
