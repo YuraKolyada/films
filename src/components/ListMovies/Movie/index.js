@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import Link from '../../Link';
 
 
-let Movie = ({id, title, actors, year}) => (
+let Movie = ({id, title, actors, year, deleteMovie}) => (
   <div className={s.movie}>
       <div className={s.wrap}>
         <h3 className={s.title}>{title}</h3>
-        <div className={s.delete} />
+        <div className={s.delete} onClick={() => deleteMovie(id)} />
       </div>
       <div className={s.year}>
         <span className={s.name}>Год выпуска: </span>

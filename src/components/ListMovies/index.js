@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ListMovies.scss';
 import { connect } from 'react-redux';
 import Link from '../Link';
-import GetMovie from '../../actions/movie';
+import { getMovie, deleteMovie } from '../../actions/movie';
 import preloader from './preloader.gif';
 import Movie from './Movie';
 
@@ -15,9 +15,15 @@ class ListMovies extends React.Component {
   componentDidMount(){
     this.props.getMovie();
   }
+
+  componentWillReceiveProps(props){
+    if(this.props.data !== props.data){
+      localStorage.setItem('movies', JSON.stringify(props.data));
+    }
+  }
   
   render() {
-    let { loading, data, title } = this.props;
+    let { loading, data, title, deleteMovie } = this.props;
     return (
       <div className={s.root}>
         <h1 className={s.title}>{title}</h1>
@@ -27,6 +33,7 @@ class ListMovies extends React.Component {
           <Movie 
             key={movie.id} 
             id={movie.id} 
+            deleteMovie={deleteMovie}
             title={movie.title} 
             year={movie.year}
             actors={movie.actors} />) }
@@ -42,7 +49,8 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = dispatch => ({ 
-    getMovie: () => dispatch(GetMovie()),
+    getMovie: () => dispatch(getMovie()),
+    deleteMovie: (id) => dispatch(deleteMovie(id)),
 });
 
 export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(ListMovies));

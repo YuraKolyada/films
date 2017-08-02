@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import * as c from '../constants';
 import getDataMovies from '../data';
 
-export default function GetMovie(){
+export function getMovie(){
 	return (dispatch) => {
 		dispatch({type: c.LOADING_MOVIE});
 		
@@ -19,3 +19,8 @@ export default function GetMovie(){
 		}
 	}
 }
+
+export let deleteMovie = (id) => ({
+	type: c.DELETE_MOVIE,
+	payload: id,
+})

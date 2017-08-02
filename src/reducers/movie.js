@@ -18,6 +18,11 @@ export default function User(state = getInitialState, action){
 				...state,
 				loading: true,
 			};
+		case c.DELETE_MOVIE: 
+			return {
+				...state,
+				data: state.data.filter((movie) => movie.id !== action.payload),
+			}
 		default:
 			return state;
 	}
