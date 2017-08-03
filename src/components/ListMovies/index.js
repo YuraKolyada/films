@@ -15,12 +15,36 @@ class ListMovies extends React.Component {
     this.state = {
       update: [],
       sort: false,
-      tabsSearchActive: 'title', 
+      tabsSearchActive: 'title',
+      searchValue: '', 
     }
   }
 
   componentDidMount(){
     this.setState({ update: this.props.data });
+  }
+
+  mapDataToSearch = (field) => (
+    Array.isArray(field) ? 
+      field.map((item) => item.firstName).join('').toLowerCase() : field.toLowerCase() 
+  )
+
+  onChangeSearch = (e) => {
+    let { data } = this.props,
+      { tabsSearchActive } = this.state,
+      { value } = e.target;
+
+    if(this.state.sort){
+      data = this.sortValue(data, true)
+    }
+
+    console.log(tabsSearchActive, 'fffff');
+
+    this.setState({
+      update: data.filter((movie) => 
+        this.mapDataToSearch(movie[tabsSearchActive]).indexOf(value.toLowerCase()) !== -1), 
+      searchValue: value,
+    })
   }
 
 
@@ -50,14 +74,16 @@ class ListMovies extends React.Component {
   
   render() {
     let { loading, data, title, deleteMovie } = this.props;
-    let { sort, update, tabsSearchActive } = this.state;
+    let { sort, update, tabsSearchActive, searchValue } = this.state;
     return (
       <div className={s.root}>
         <h1 className={s.title}>{title}</h1>
         <div className={s.menu}>
           <Search 
             activeTab={tabsSearchActive} 
-            tabClick={(tabName) => {this.setState({tabsSearchActive: tabName})}}
+            tabClick={(tabName) => {this.setState({tabsSearchActive: tabName}); this.onChangeSearch({target: {value: searchValue}});}}
+            value={searchValue}
+            onChangeSearch={this.onChangeSearch}
           />
           <Sort sortNameFunc={this.sortNameClick} sortActive={sort} />
         </div>

@@ -9,12 +9,12 @@ let tabs = [
     name: 'названию фильма',
   },
   {
-    id: 'actor',
+    id: 'actors',
     name: 'имени актера',
   },
 ]
 
-let Search = ({activeTab, onChangeSearch, tabClick}) => (
+let Search = ({activeTab, onChangeSearch, tabClick, value}) => (
   <div className={s.searchBar}>
     <div className={s.tabs}>
       <p className={s.title}>Поиск по: </p>
@@ -31,7 +31,8 @@ let Search = ({activeTab, onChangeSearch, tabClick}) => (
         className={s.input}
         type='text' 
         placeholder='поиск...'
-        onChange={() => onChangeSearch()}/>
+        value={value}
+        onChange={(e) => onChangeSearch(e)}/>
     </div>
   </div>
 );
