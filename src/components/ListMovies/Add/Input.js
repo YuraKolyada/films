@@ -1,13 +1,14 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Add.scss';
+import cx from 'classnames';
 
 
-let Input = ({onChangeInput, value, type, label, id}) => (
+let Input = ({onChangeInput, value, type, label, id, error}) => (
   <label className={s.label}> 
     { label }
     <input 
-      className={s.input}
+      className={cx(s.input, {[s.error]: (error && !value)})}
       type={type} 
       value={value}
       required

@@ -13,7 +13,9 @@ class Add extends React.Component {
     super();
     this.state = {
       valueTitle: '',
+      errorTitle: false,
       valueYear: '',
+      errorYear: false,
       valueFormat: 'DVD',
       valueNameActor: '',
       valueLastNameActor: '',
@@ -41,24 +43,38 @@ class Add extends React.Component {
     e.preventDefault();
     let {valueTitle, valueYear, valueFormat, actors} = this.state;
     if(valueTitle && valueYear){
-      console.log('add');
       this.props.addMovieFunc({title: valueTitle, year: +valueYear, format: valueFormat, actors});
       alert('Фильм добавлен');
       this.setState({
         valueTitle: '',
         valueYear: '',
         valueFormat: 'DVD',
+        errorTitle: false,
+        errorYear: false,
         valueNameActor: '',
         valueLastNameActor: '',
         actors: [],
       })
+    } else if(!valueTitle){
+      this.setState({errorTitle: true});
+    } else if(!valueYear){
+      this.setState({errorYear: true});
     }
 
     return;
   }
 
   render() {
-    let { valueTitle, valueYear, valueFormat, valueNameActor, valueLastNameActor, actors } = this.state;
+    let { valueTitle, 
+      valueYear, 
+      valueFormat, 
+      valueNameActor, 
+      valueLastNameActor, 
+      actors, 
+      errorYear,
+      errorTitle,
+    } = this.state;
+
     let fields = [
       {
         component: Input,
@@ -67,6 +83,7 @@ class Add extends React.Component {
           type: 'text',
           label: 'Название',
           value: valueTitle,
+          error: errorTitle,
         }
       },
       {
@@ -76,6 +93,7 @@ class Add extends React.Component {
           type: 'number',
           label: 'Год',
           value: valueYear,
+          error: errorYear,
         }
       },
       {

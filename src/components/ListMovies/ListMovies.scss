@@ -47,6 +47,13 @@ input[type="file"] {
     vertical-align: middle;
 }
 
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
 @media screen and (max-width: 820px) {
 	.menu {
 		width: 100%;
@@ -58,8 +65,5 @@ input[type="file"] {
 		width: 770px;
 	    position: absolute;
 	    height: 100%;
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-between;
 	}	
 }
