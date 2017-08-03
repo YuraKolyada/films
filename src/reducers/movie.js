@@ -35,6 +35,13 @@ export default function User(state = getInitialState, action){
 
 
 let addMovie = (state, payload) => {
+	if(Array.isArray(payload)){
+		return [
+			...state,
+			...payload,
+		]
+	}
+	
 	let {title, year, format, actors} = payload;
 	let id = Math.ceil(Math.random() * (500000 - 10000) + 10000);
 

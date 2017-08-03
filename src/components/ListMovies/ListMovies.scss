@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	margin-bottom: 50px;
 }
 
 .title {
@@ -21,4 +22,27 @@
 	align-items: center;
 	display: flex;
 	justify-content: space-between;
+}
+
+.unload {
+	text-align: center;
+	padding-bottom: 10px;
+	vertical-align: middle;
+}
+
+.load {
+	color: #0066ff;
+	font-size: 20px;
+	font-weight: 500;
+	padding-right: 15px;
+}
+
+.or {
+	color: #0066ff;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+input[type="file"] {
+    vertical-align: middle;
 }

@@ -9,6 +9,8 @@ import Movie from './Movie';
 import Sort from './Sort';
 import Search from './Search';
 import Add from './Add';
+import GetDataFile from '../../data';
+
 
 class ListMovies extends React.Component {
   constructor(){
@@ -23,6 +25,30 @@ class ListMovies extends React.Component {
 
   componentDidMount(){
     this.setState({ update: this.props.data });
+  }
+
+  onChangeLoadFile = (e) => {
+    let file = e.target.files[0],
+      textType = /text.*/,
+      fileName = localStorage.getItem('textName') ? JSON.parse(localStorage.getItem('textName')) : [];
+
+    if (fileName.indexOf(file.name) !== -1){
+      alert('Ошыбка! Данный файл уже был загружен');
+      return;
+    }
+
+    if (file.type.match(textType)) {
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        let data = new GetDataFile(event.target.result).parseData();
+        this.props.addMovie(data);
+        alert('фильмы добавлены');
+      }
+      reader.readAsText(file); 
+      localStorage.setItem('textName', JSON.stringify([...fileName, file.name]));
+    } else {
+      alert('файл выбран не формате .txt');
+    }
   }
 
   mapDataToSearch = (field) => (
@@ -77,6 +103,12 @@ class ListMovies extends React.Component {
     return (
       <div className={s.root}>
         <h1 className={s.title}>{title}</h1>
+        <div className={s.unload}>
+          <span className={s.load}>Загрузить фильмы </span>
+          <input type='file' accept='text/plain' onChange={this.onChangeLoadFile} /> 
+          <span className={s.or}>или</span>
+        </div>
+        
         <Add addMovieFunc={addMovie} />
         <div className={s.menu}>
           <Search 

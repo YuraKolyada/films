@@ -1,6 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import * as c from '../constants';
-import getDataMovies from '../data';
+import GetDataFile from '../data';
+import movies from '../data/sample_movies.txt';
+
+let getDataMovies = new GetDataFile(movies);
 
 export function getMovie(){
 	return (dispatch) => {
@@ -14,7 +17,7 @@ export function getMovie(){
 		} else {
 			dispatch({
 				type: c.GET_MOVIE,
-				payload: getDataMovies(),
+				payload: getDataMovies.parseData(),
 			})
 		}
 	}
