@@ -3,8 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Layout.scss';
 import { connect } from 'react-redux';
 import { getMovie } from '../../actions/movie';
-import Header from '../Header';
-import Footer from '../Footer';
+
 
 class Layout extends React.Component {
   

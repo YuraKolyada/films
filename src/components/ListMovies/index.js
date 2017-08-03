@@ -8,6 +8,7 @@ import preloader from './preloader.gif';
 import Movie from './Movie';
 import Sort from './Sort';
 import Search from './Search';
+import Add from './Add';
 
 class ListMovies extends React.Component {
   constructor(){
@@ -37,8 +38,6 @@ class ListMovies extends React.Component {
     if(this.state.sort){
       data = this.sortValue(data, true)
     }
-
-    console.log(tabsSearchActive, 'fffff');
 
     this.setState({
       update: data.filter((movie) => 
@@ -78,10 +77,11 @@ class ListMovies extends React.Component {
     return (
       <div className={s.root}>
         <h1 className={s.title}>{title}</h1>
+        <Add />
         <div className={s.menu}>
           <Search 
             activeTab={tabsSearchActive} 
-            tabClick={(tabName) => {this.setState({tabsSearchActive: tabName}); this.onChangeSearch({target: {value: searchValue}});}}
+            tabClick={(tabName) => {this.setState({tabsSearchActive: tabName})}}
             value={searchValue}
             onChangeSearch={this.onChangeSearch}
           />
