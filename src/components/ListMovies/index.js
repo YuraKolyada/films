@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ListMovies.scss';
 import { connect } from 'react-redux';
 import Link from '../Link';
-import { deleteMovie, getMovie } from '../../actions/movie';
+import { deleteMovie, getMovie, addMovie } from '../../actions/movie';
 import preloader from './preloader.gif';
 import Movie from './Movie';
 import Sort from './Sort';
@@ -72,12 +72,12 @@ class ListMovies extends React.Component {
   }
   
   render() {
-    let { loading, data, title, deleteMovie } = this.props;
+    let { loading, data, title, deleteMovie, addMovie } = this.props;
     let { sort, update, tabsSearchActive, searchValue } = this.state;
     return (
       <div className={s.root}>
         <h1 className={s.title}>{title}</h1>
-        <Add />
+        <Add addMovieFunc={addMovie} />
         <div className={s.menu}>
           <Search 
             activeTab={tabsSearchActive} 
@@ -110,7 +110,8 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = dispatch => ({ 
   deleteMovie: (id) => dispatch(deleteMovie(id)),
-   getMovie: () => dispatch(getMovie()),
+  getMovie: () => dispatch(getMovie()),
+  addMovie: (movie) => dispatch(addMovie(movie)), 
 });
 
 export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(ListMovies));

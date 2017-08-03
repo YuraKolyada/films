@@ -25,7 +25,7 @@ export let deleteMovie = (id) => ({
 	payload: id,
 })
 
-export let sortMovie = (sortActive) => ({
-	type: c.SORT_MOVIE,
-	payload: sortActive,
+export let addMovie = (payload) => ({
+	type: c.ADD_MOVIE ,
+	payload,
 })

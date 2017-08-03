@@ -3,7 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Add.scss';
 
 
-let Input = ({onChangeAdd, value, type, label}) => (
+let Input = ({onChangeInput, value, type, label, id}) => (
   <label className={s.label}> 
     { label }
     <input 
@@ -11,7 +11,7 @@ let Input = ({onChangeAdd, value, type, label}) => (
       type={type} 
       value={value}
       required
-      onChange={(e) => onChangeAdd(e)} />
+      onChange={(e) => onChangeInput(e, id)} />
   </label>
 );
 
