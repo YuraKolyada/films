@@ -111,13 +111,15 @@ class ListMovies extends React.Component {
         
         <Add addMovieFunc={addMovie} />
         <div className={s.menu}>
-          <Search 
-            activeTab={tabsSearchActive} 
-            tabClick={(tabName) => {this.setState({tabsSearchActive: tabName})}}
-            value={searchValue}
-            onChangeSearch={this.onChangeSearch}
-          />
-          <Sort sortNameFunc={this.sortNameClick} sortActive={sort} />
+          <div className={s.wrapper}>
+            <Search 
+              activeTab={tabsSearchActive} 
+              tabClick={(tabName) => {this.setState({tabsSearchActive: tabName})}}
+              value={searchValue}
+              onChangeSearch={this.onChangeSearch}
+            />
+            <Sort sortNameFunc={this.sortNameClick} sortActive={sort} />
+          </div>
         </div>
         <div className={s.container}>
         {loading ? <img src={preloader} className={s.preloader} /> 
