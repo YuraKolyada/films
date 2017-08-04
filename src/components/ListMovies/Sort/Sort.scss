@@ -1,0 +1,13 @@
+.sort {
+	font-size: 16px;
+	line-height: 25px;
+	cursor: pointer;
+	padding: 5px 10px;
+	font-weight: 500;
+	color: #4F4F4F;
+	&.active {
+		background: #4F4F4F;
+		color: #fff;
+		border-radius: 3px;
+	}
+}
