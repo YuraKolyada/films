@@ -37,7 +37,7 @@
 
 ```shell
 $ git clone https://github.com/YuraKolyada/films.git
-$ cd films
+$ cd films/
 ```
 #### 2. Установить все пакеты, библиотеки
 
