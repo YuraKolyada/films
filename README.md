@@ -1,4 +1,5 @@
 # Структура проекта
+
 ```
 .
 ├── /build/                     # Папка для скомпилированного кода
@@ -52,7 +53,7 @@ $ npm start
 ```
 Эта команда создаст приложение из исходных файлов (`/src`) в выходной файл
 `/build`.Как только начальная сборка завершится, она запустит
-сервер Node.js(`node build/server.js`) и [Browsersync], с помощью [HMR] поверх него.
+сервер Node.js(`node build/server.js`) и Browsersync, с помощью HMR поверх него.
 
 > [http://localhost:3000/](http://localhost:3000/) — Node.js сервер (`build/server.js`)
 > [http://localhost:3001/](http://localhost:3001/) — панель Browsersync
