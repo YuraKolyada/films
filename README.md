@@ -16,7 +16,7 @@
 │   ├── /server.js              # Скрипт запуска на стороне клиента
 │   ├── /router.js              # инициализация universal-router(роутинга)
 │   └── /history.js             # инициализация истории для роутинга
-├── /test/                      # тесты...
+├── /jest/                      # загружчик файлов для тестирование
 ├── /tools/                     # 
 │   ├── /build.js               # Создает проект из исходной папки
 │   ├── /bundle.js              # Связывает веб-ресурсы с пакетами через Webpack
@@ -29,6 +29,7 @@
 │   ├── /start.js               # Запускает веб-сервер разработки с «живой перезагрузкой»,
 │   └── /webpack.config.js      # Конфигурации для клиентских и серверных пакетов
 ├── package.json                # список установленных библиотек
+├── jest.config.js              # конфиг для тестирование
 ```
 
 ### Запуск проекта
@@ -37,7 +38,7 @@
 
 ```shell
 $ git clone https://github.com/YuraKolyada/films.git
-$ cd films
+$ cd films/
 ```
 #### 2. Установить все пакеты, библиотеки
 
@@ -55,3 +56,11 @@ $ npm start
 
 > [http://localhost:3000/](http://localhost:3000/) — Node.js сервер (`build/server.js`)
 > [http://localhost:3001/](http://localhost:3001/) — панель Browsersync
+
+### Тестирование проекта
+точнее сказать: actions and reducers 
+
+```shell
+$ npm test
+
+```

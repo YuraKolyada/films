@@ -41,9 +41,9 @@ let addMovie = (state, payload) => {
 			...payload,
 		]
 	}
-	
+
 	let {title, year, format, actors} = payload;
-	let id = Math.ceil(Math.random() * (500000 - 10000) + 10000);
+	let id = payload.id ? payload.id : Math.ceil(Math.random() * (500000 - 10000) + 10000);
 
 	return [
 		...state,
