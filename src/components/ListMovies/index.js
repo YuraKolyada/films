@@ -41,6 +41,10 @@ class ListMovies extends React.Component {
       let reader = new FileReader();
       reader.onload = (event) => {
         let data = new GetDataFile(event.target.result).parseData();
+        if(!data.length){
+          alert('Что-то пошло не так... Проверьте свой файл. В следующий раз все получиться! Удачи');
+          return;
+        }
         this.props.addMovie(data);
         alert('фильмы добавлены');
       }
@@ -122,7 +126,7 @@ class ListMovies extends React.Component {
           </div>
         </div>
         <div className={s.container}>
-        {loading ? <img src={preloader} className={s.preloader} /> 
+        {!update.length && searchValue ? <span> По даному запросу нету фильмов </span> 
         : update.map((movie) => 
           <Movie 
             key={movie.id} 

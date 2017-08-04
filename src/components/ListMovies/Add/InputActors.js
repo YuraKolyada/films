@@ -6,7 +6,7 @@ import cx from 'classnames';
 
 let InputActors = ({onChangeInput, allProps, actors, addActorsFunc}) => (
   <div className={s.labelActors}>
-  	<p className={s.nameActors}>Актори</p>
+  	<p className={s.nameActors}>Актеры</p>
   	<div className={s.actorsAdd}>
   		<span className={s.mark}>добавлены: </span>
   		{!actors.length ? <span>нету</span> : 

@@ -30,8 +30,9 @@ class Add extends React.Component {
         valueNameActor: '',
         valueLastNameActor: '',
       })
+    } else {
+      alert('Введите полностью имя и фамилию актера');
     }
-    return;
   }
 
   onChangeInput = (e, input) => {

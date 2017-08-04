@@ -30,7 +30,7 @@ class InfoMovie extends React.Component {
           </div>
           <div className={s.actors}>
             <span className={s.name}>Акторы: </span>
-            <span>{actors ? actors.map((actor) => `${actor.firstName} ${actor.lastName}, `) : 'нету...'}</span>
+            <span>{actors.length ? actors.map((actor) => `${actor.firstName} ${actor.lastName}, `) : 'нету...'}</span>
           </div>
         </div>
       </div>

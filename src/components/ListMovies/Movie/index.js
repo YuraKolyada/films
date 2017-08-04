@@ -15,7 +15,7 @@ let Movie = ({id, title, actors, year, deleteMovie}) => (
         <span>{year}</span>
       </div>
       <div className={s.actors}>
-        <span className={s.name}>Акторы: </span>
+        <span className={s.name}>Актеры: </span>
         <span>{actors.slice(0, 2).map((actor) => `${actor.firstName} ${actor.lastName}, `)}...</span>
       </div>
       <Link className={s.link} to={`/movie/${id}`}>Узнать больше о фильме...</Link>
