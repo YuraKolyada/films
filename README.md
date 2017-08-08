@@ -1,3 +1,7 @@
+### deploy to Heroku
+
+> [https://newmovies.herokuapp.com/](https://newmovies.herokuapp.com/) — site on heroku
+
 # Структура проекта
 
 ```
@@ -51,6 +55,7 @@ $ npm install
 ```shell
 $ npm start
 ```
+footbal this 
 Эта команда создаст приложение из исходных файлов (`/src`) в выходной файл
 `/build`.Как только начальная сборка завершится, она запустит
 сервер Node.js(`node build/server.js`) и Browsersync, с помощью HMR поверх него.

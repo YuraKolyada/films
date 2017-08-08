@@ -36,11 +36,11 @@ class Add extends React.Component {
     }
   }
 
-  onChangeInput = (e, input) => {
+  onChangeInput = (e, input, maxLength) => {
     let { value } = e.target;
-    if(input === 'valueYear' && value.length > 4){
+    if(input === 'valueYear' && value.length > maxLength){
       value = this.state.valueYear;
-    } else if (value.length > 40) {
+    } else if (value.length > maxLength) {
       value = this.state[input];
     }
 
@@ -98,6 +98,7 @@ class Add extends React.Component {
           label: 'Название',
           value: valueTitle,
           error: errorTitle,
+          maxLength: 40,
         }
       },
       {
@@ -108,6 +109,7 @@ class Add extends React.Component {
           label: 'Год',
           value: valueYear,
           error: errorYear,
+          maxLength: 4,
         }
       },
       {
@@ -116,6 +118,7 @@ class Add extends React.Component {
           id: 'valueFormat',
           label: 'Формат',
           value: valueFormat,
+          maxLength: 20,
         }
       },
       {
@@ -128,11 +131,13 @@ class Add extends React.Component {
               id: 'valueNameActor',
               label: 'Имя',
               value: valueNameActor,
+              maxLength: 25,
             },
             {
               id: 'valueLastNameActor',
               label: 'Фамилия',
               value: valueLastNameActor,
+              maxLength: 25,
             },
           ]
         }

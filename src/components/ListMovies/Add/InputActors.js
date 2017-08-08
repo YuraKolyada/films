@@ -24,7 +24,7 @@ let InputActors = ({onChangeInput, allProps, actors, addActorsFunc}) => (
 		      ref={(field) => this[input.id] = field}
 		      type='text'
 		      value={input.value}
-		      onChange={(e) => onChangeInput(e, input.id)} />
+		      onChange={(e) => onChangeInput(e, input.id, input.maxLength)} />
 		  </label>) 
 	  }
 	</div>   
