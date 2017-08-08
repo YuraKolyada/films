@@ -4,11 +4,11 @@ import s from './Add.scss';
 import cx from 'classnames';
 
 
-let Input = ({onChangeInput, value, type, label, id, error}) => (
+let Input = ({onChangeInput, value, type, label, id, error, min}) => (
   <label className={s.label}> 
     { label }
     <input 
-      className={cx(s.input, {[s.error]: (error && !value)})}
+      className={cx(s.input, {[s.error]: (error && (type === 'number' ? +value <= 0 : !value.trim().length))})}
       type={type} 
       value={value}
       required
