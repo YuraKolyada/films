@@ -37,7 +37,12 @@ class Add extends React.Component {
   }
 
   onChangeInput = (e, input) => {
-    this.setState({[input]: e.target.value});
+    let { value } = e.target;
+    if(input === 'valueYear' && value.length > 5){
+      value = this.state.valueYear;
+    }
+    
+    this.setState({[input]: value});
   }
 
 

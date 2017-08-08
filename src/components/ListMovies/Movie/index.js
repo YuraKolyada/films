@@ -20,7 +20,7 @@ let Movie = ({id, title, actors, year, deleteMovie}) => (
       </div>
       <div className={s.actors}>
         <span className={s.name}>Актеры: </span>
-        <span>{actors.length ? listActors(actors) : 'нету'}</span>
+        <span className={s.list}>{actors.length ? listActors(actors) : 'нету'}</span>
       </div>
       <Link className={s.link} to={`/movie/${id}`}>Узнать больше о фильме...</Link>
   </div>
