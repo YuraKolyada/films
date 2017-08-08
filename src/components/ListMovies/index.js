@@ -78,7 +78,7 @@ class ListMovies extends React.Component {
 
 
 
-  componentWillReceiveProps(props){
+  componentWillReceiveProps(props, nextState){
     if(this.props.data !== props.data){
       if(this.state.sort){
         this.setState({ update: this.sortValue(props.data, true) });
@@ -88,10 +88,12 @@ class ListMovies extends React.Component {
 
       localStorage.setItem('movies', JSON.stringify(props.data));
     }
+
   }
 
   sortValue = (data, active) => {
     let update = [...data];
+
     return active ? 
       update.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 
         : (a.title.toLowerCase() < b.title.toLowerCase()) ? -1 : 0) : data;

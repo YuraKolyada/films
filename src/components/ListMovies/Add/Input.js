@@ -4,7 +4,7 @@ import s from './Add.scss';
 import cx from 'classnames';
 
 
-let Input = ({onChangeInput, value, type, label, id, error, min}) => (
+let Input = ({onChangeInput, value, type, label, id, error, maxLength}) => (
   <label className={s.label}> 
     { label }
     <input 
@@ -12,7 +12,7 @@ let Input = ({onChangeInput, value, type, label, id, error, min}) => (
       type={type} 
       value={value}
       required
-      onChange={(e) => onChangeInput(e, id)} />
+      onChange={(e) => onChangeInput(e, id, maxLength)} />
   </label>
 );
 
