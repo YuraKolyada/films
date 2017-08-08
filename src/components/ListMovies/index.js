@@ -57,7 +57,7 @@ class ListMovies extends React.Component {
 
   mapDataToSearch = (field) => (
     Array.isArray(field) ? 
-      field.map((item) => item.firstName).join('').toLowerCase() : field.toLowerCase() 
+      field.map((item) => item.firstName + ' ' + item.lastName).join('').toLowerCase() : field.toLowerCase() 
   )
 
   onChangeSearch = (e) => {
@@ -93,7 +93,8 @@ class ListMovies extends React.Component {
   sortValue = (data, active) => {
     let update = [...data];
     return active ? 
-      update.sort((a, b) => (a.title > b.title) ? 1 : (a.title < b.title) ? -1 : 0) : data;
+      update.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase()) ? 1 
+        : (a.title.toLowerCase() < b.title.toLowerCase()) ? -1 : 0) : data;
   }
 
   sortNameClick = (sortActive) => {

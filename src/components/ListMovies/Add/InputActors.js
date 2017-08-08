@@ -10,7 +10,7 @@ let InputActors = ({onChangeInput, allProps, actors, addActorsFunc}) => (
   	<div className={s.actorsAdd}>
   		<span className={s.mark}>добавлены: </span>
   		{!actors.length ? <span>нету</span> : 
-  		    <span>
+  		    <span className={s.list}>
   		    	{ actors.map((actor, id) => `${actor.firstName} ${actor.lastName}, `)}
   		    </span>
   		}

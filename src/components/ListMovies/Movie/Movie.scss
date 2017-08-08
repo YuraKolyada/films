@@ -10,7 +10,9 @@
 	line-height: 1;
 	font-weight: 700;
 	color: #4F4F4F;
+	width: calc(100% - #{30px});
 	padding-bottom: 16px;
+	word-break: break-all; 
 }
 
 .year {
@@ -18,6 +20,9 @@
 	line-height: 1;
 	font-weight: 400;
 	padding-bottom: 12px;
+	& + span {
+		word-break: break-all; 
+	}
 }
 
 .actors {
@@ -25,6 +30,9 @@
 	line-height: 1;
 	font-weight: 400;
 	padding-bottom: 14px;
+	& + span {
+		word-break: break-all; 
+	}
 }
 
 .name {

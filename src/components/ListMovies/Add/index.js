@@ -24,14 +24,15 @@ class Add extends React.Component {
   }
 
   addActors = (firstName, lastName) => {
-    if(firstName && lastName){
+
+    if(firstName.trim().length && lastName.trim().length){
       this.setState({
-        actors: [...this.state.actors, {firstName, lastName}], 
+        actors: [...this.state.actors, {firstName: firstName.trim(), lastName: lastName.trim()}], 
         valueNameActor: '',
         valueLastNameActor: '',
       })
     } else {
-      alert('Введите полностью имя и фамилию актера');
+      alert('Введите коректно имя и фамилию актера');
     }
   }
 
@@ -43,9 +44,18 @@ class Add extends React.Component {
   onSubmitAddMovie = (e) => {
     e.preventDefault();
     let {valueTitle, valueYear, valueFormat, actors} = this.state;
-    if(valueTitle && valueYear){
-      this.props.addMovieFunc({title: valueTitle, year: +valueYear, format: valueFormat, actors});
+
+    if (!valueTitle.trim().length){
+      this.setState({errorTitle: true});
+
+    } else if(+valueYear <= 0){
+      this.setState({errorYear: true});
+
+    } else if(valueTitle && valueYear){
+      this.props.addMovieFunc({title: valueTitle.trim(), year: +valueYear, format: valueFormat, actors});
+
       alert('Фильм добавлен');
+
       this.setState({
         valueTitle: '',
         valueYear: '',
@@ -56,11 +66,7 @@ class Add extends React.Component {
         valueLastNameActor: '',
         actors: [],
       })
-    } else if(!valueTitle){
-      this.setState({errorTitle: true});
-    } else if(!valueYear){
-      this.setState({errorYear: true});
-    }
+    } 
 
     return;
   }

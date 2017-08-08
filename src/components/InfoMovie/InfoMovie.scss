@@ -10,6 +10,7 @@
 	font-weight: 700;
 	color: #4F4F4F;
 	padding-bottom: 16px;
+	word-break: break-all; 
 }
 
 .titleHeader {
@@ -26,6 +27,9 @@
 	line-height: 1;
 	font-weight: 400;
 	padding-bottom: 12px;
+	& + span {
+		word-break: break-all; 
+	}
 }
 
 .actors {
@@ -33,6 +37,9 @@
 	line-height: 1.5;
 	font-weight: 400;
 	padding-bottom: 14px;
+	& + span {
+		word-break: break-all; 
+	}
 }
 
 .name {
