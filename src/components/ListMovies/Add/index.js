@@ -38,10 +38,12 @@ class Add extends React.Component {
 
   onChangeInput = (e, input) => {
     let { value } = e.target;
-    if(input === 'valueYear' && value.length > 5){
+    if(input === 'valueYear' && value.length > 4){
       value = this.state.valueYear;
+    } else if (value.length > 40) {
+      value = this.state[input];
     }
-    
+
     this.setState({[input]: value});
   }
 
