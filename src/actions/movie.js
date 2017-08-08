@@ -6,20 +6,16 @@ import movies from '../data/sample_movies.txt';
 let getDataMovies = new GetDataFile(movies);
 
 export function getMovie(){
-	return (dispatch) => {
-		dispatch({type: c.LOADING_MOVIE});
-		
-		if(localStorage.getItem('movies')){
-			dispatch({
-				type: c.GET_MOVIE,
-				payload: JSON.parse(localStorage.getItem('movies')),
-			})
-		} else {
-			dispatch({
-				type: c.GET_MOVIE,
-				payload: getDataMovies.parseData(),
-			})
-		}
+	if(localStorage.getItem('movies')){
+		return {
+			type: c.GET_MOVIE,
+			payload: JSON.parse(localStorage.getItem('movies')),
+		};
+	} else {
+		return {
+			type: c.GET_MOVIE,
+			payload: getDataMovies.parseData(),
+		};
 	}
 }
 
