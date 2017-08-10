@@ -4,13 +4,19 @@ import s from './ListMovies.scss';
 import { connect } from 'react-redux';
 import Link from '../Link';
 import { deleteMovie, getMovie, addMovie } from '../../actions/movie';
+import { showModal } from '../../actions/modal';
+import * as c from '../../constants/modal';
 import preloader from './preloader.gif';
 import Movie from './Movie';
 import Sort from './Sort';
 import Search from './Search';
 import Add from './Add';
+import Modals from '../Modals';
 import GetDataFile from '../../data';
 
+
+const FAIL = c.MODAL_TYPE_FAIL;
+const OK = c.MODAL_TYPE_SUCCSESS;
 
 class ListMovies extends React.Component {
   constructor(){
@@ -30,10 +36,11 @@ class ListMovies extends React.Component {
   onChangeLoadFile = (e) => {
     let file = e.target.files[0],
       textType = /text.*/,
+      { showModal } = this.props,
       fileName = localStorage.getItem('textName') ? JSON.parse(localStorage.getItem('textName')) : [];
 
     if (fileName.indexOf(file.name) !== -1){
-      alert('Ошыбка! Данный файл уже был загружен');
+      showModal(FAIL, {title: 'Ошыбка! Данный файл уже был загружен'});
       return;
     }
 
@@ -42,16 +49,16 @@ class ListMovies extends React.Component {
       reader.onload = (event) => {
         let data = new GetDataFile(event.target.result).parseData();
         if(!data.length){
-          alert('Что-то пошло не так... Проверьте свой файл. В следующий раз все получиться! Удачи');
+          showModal(FAIL, {title: 'Что-то пошло не так... Проверьте свой файл. В следующий раз все получиться! Удачи'});
           return;
         }
         this.props.addMovie(data);
-        alert('фильмы добавлены');
+        showModal(OK, {title: 'Фильмы добавлены'});
       }
       reader.readAsText(file); 
       localStorage.setItem('textName', JSON.stringify([...fileName, file.name]));
     } else {
-      alert('файл выбран не формате .txt');
+      showModal(FAIL, {title: 'файл выбран не формате .txt'});
     }
   }
 
@@ -105,7 +112,7 @@ class ListMovies extends React.Component {
   }
   
   render() {
-    let { loading, data, title, deleteMovie, addMovie } = this.props;
+    let { loading, data, title, deleteMovie, addMovie, showModal } = this.props;
     let { sort, update, tabsSearchActive, searchValue } = this.state;
     return (
       <div className={s.root}>
@@ -116,7 +123,7 @@ class ListMovies extends React.Component {
           <span className={s.or}>или</span>
         </div>
         
-        <Add addMovieFunc={addMovie} />
+        <Add addMovieFunc={addMovie} fail={FAIL} success={OK} showModal={showModal} />
         <div className={s.menu}>
           <div className={s.wrapper}>
             <Search 
@@ -139,6 +146,7 @@ class ListMovies extends React.Component {
             year={movie.year}
             actors={movie.actors} />) }
         </div>
+        <Modals />
       </div>
     );
   }
@@ -153,6 +161,7 @@ let mapDispatchToProps = dispatch => ({
   deleteMovie: (id) => dispatch(deleteMovie(id)),
   getMovie: () => dispatch(getMovie()),
   addMovie: (movie) => dispatch(addMovie(movie)), 
+  showModal: (type, props) => dispatch(showModal(type, props)),
 });
 
 export default withStyles(s)(connect(mapStateToProps, mapDispatchToProps)(ListMovies));

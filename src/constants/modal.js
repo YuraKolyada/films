@@ -1,0 +1,4 @@
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const HIDE_MODAL = 'HIDE_MODAL';
+export const MODAL_TYPE_FAIL = 'MODAL_TYPE_FAIL';
+export const MODAL_TYPE_SUCCSESS = 'MODAL_TYPE_SUCCSESS';
