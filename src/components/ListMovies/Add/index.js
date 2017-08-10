@@ -7,7 +7,6 @@ import InputActors from './InputActors';
 import Select from './Select';
 
 
-
 class Add extends React.Component {
   constructor(){
     super();
@@ -32,7 +31,7 @@ class Add extends React.Component {
         valueLastNameActor: '',
       })
     } else {
-      alert('Введите коректно имя и фамилию актера');
+      this.props.showModal(this.props.fail, {title: 'Введите коректно имя и фамилию актера'});
     }
   }
 
@@ -61,7 +60,7 @@ class Add extends React.Component {
     } else if(valueTitle && valueYear){
       this.props.addMovieFunc({title: valueTitle.trim(), year: +valueYear, format: valueFormat, actors});
 
-      alert('Фильм добавлен');
+      this.props.showModal(this.props.success, {title: 'Фильм добавлен'});
 
       this.setState({
         valueTitle: '',
